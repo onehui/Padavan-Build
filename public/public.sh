@@ -7,12 +7,12 @@
 user_name="admin"                                   # 用户名
 user_password="admin"                               # 登录密码
 lan_ip="192.168.2"                                  # LAN 地址 别写后面的 .1
-wlan_2g_ssid="Padavan"                              # 2G 无线名称
-wlan_5g_ssid="Padavan_5G"                           # 5G 无线名称
+wlan_2g_ssid="onehui"                              # 2G 无线名称
+wlan_5g_ssid="onehui_5G"                           # 5G 无线名称
 wlan_guest_2g_ssid="Padavan_Guset"                  # 2G 访客无线名称
 wlan_guest_5g_ssid="Padavan_Guest_5G"               # 5G 访客无线名称
-wlan_2g_psk="1234567890"                            # 2G WIFI密码最少8位 空白为不设置
-wlan_5g_psk="1234567890"                            # 5G WIFI密码最少8位 空白为不设置
+wlan_2g_psk="asdfghjkl"                            # 2G WIFI密码最少8位 空白为不设置
+wlan_5g_psk="asdfghjkl"                            # 5G WIFI密码最少8位 空白为不设置
 version_time=$(date +%Y%m%d)                        # 更新时版本号时间: 20210101
 default_file="./user/shared/defaults.h"             # 默认配置文件
 
@@ -45,3 +45,8 @@ sed -i 's/DEF_WLAN_5G_PSK		"1234567890"/DEF_WLAN_5G_PSK		"'$wlan_5g_psk'"/g' $de
 
 echo "更新版本号时间"
 sed -i "s/FIRMWARE_BUILDS_REV=.*/FIRMWARE_BUILDS_REV=$version_time/g" ./versions.inc
+
+# echo "设置为PPPOE模式并写入账号和密码"
+sed -i 's/{ "wan_proto", "dhcp" }/{ "wan_proto", "pppoe" }/g' $default_path/defaults.c
+sed -i 's/{ "wan_pppoe_username", "" }/{ "wan_pppoe_username", "13848171040" }/g' $default_path/defaults.c
+sed -i 's/{ "wan_pppoe_passwd", "" }/{ "wan_pppoe_passwd", "112233" }/g' $default_path/defaults.c
