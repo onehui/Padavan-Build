@@ -45,8 +45,3 @@ sed -i 's/DEF_WLAN_5G_PSK		"1234567890"/DEF_WLAN_5G_PSK		"'$wlan_5g_psk'"/g' $de
 
 echo "更新版本号时间"
 sed -i "s/FIRMWARE_BUILDS_REV=.*/FIRMWARE_BUILDS_REV=$version_time/g" ./versions.inc
-
-echo "设置为PPPOE模式并写入账号和密码"
-sed -i 's/{ "wan_proto", "dhcp" }/{ "wan_proto", "pppoe" }/g' $default_path/defaults.c
-sed -i 's/{ "wan_pppoe_username", "" }/{ "wan_pppoe_username", "13848171040" }/g' $default_path/defaults.c
-sed -i 's/{ "wan_pppoe_passwd", "" }/{ "wan_pppoe_passwd", "112233" }/g' $default_path/defaults.c
